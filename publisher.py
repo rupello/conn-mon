@@ -1,9 +1,10 @@
 import zmq
 import random
-import sys
+import os
 import time
 
-port = "5559"
+port =  os.environ["CM_PORT_PUBLISHER"]
+
 context = zmq.Context()
 socket = context.socket(zmq.PUB)
 socket.connect("tcp://localhost:%s" % port)

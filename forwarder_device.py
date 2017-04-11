@@ -1,17 +1,23 @@
 import zmq
+import os
 
 def main():
+
+    pub_facing_port =  os.environ["CM_PORT_PUBLISHER"]
+    sub_facing_port =  os.environ["CM_PORT_SUBSCRIBER"]
+
     try:
         context = zmq.Context(1)
-        # Socket facing clients
+
+        # Socket facing publishers
         frontend = context.socket(zmq.SUB)
-        frontend.bind("tcp://*:5559")
+        frontend.bind("tcp://*:%s" % pub_facing_port)
 
         frontend.setsockopt(zmq.SUBSCRIBE,b"")
 
-        # Socket facing services
+        # Socket facing subscribers
         backend = context.socket(zmq.PUB)
-        backend.bind("tcp://*:5560")
+        backend.bind("tcp://*:%s" % sub_facing_port)
 
         zmq.device(zmq.FORWARDER, frontend, backend)
     except Exception as e:
