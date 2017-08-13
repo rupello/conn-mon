@@ -31,7 +31,7 @@ Vagrant.configure("2") do |config|
   # documentation for more information about their specific syntax and use.
   config.vm.provision "shell", inline: <<-SHELL
     apt-get update
-    apt-get install -y python-pip tcpdump unzip
+    apt-get install -y python-pip tcpdump unzip libpcap-dev
     pip install --upgrade pip
     pip install virtualenv
   SHELL
@@ -39,7 +39,7 @@ Vagrant.configure("2") do |config|
     mkdir ~/venvs
     virtualenv ~/venvs/connmon
     source ~/venvs/connmon/bin/activate
-    pip install honcho zmq
+    pip install honcho zmq chains
     wget -q https://github.com/joewalnes/websocketd/releases/download/v0.2.12/websocketd-0.2.12-linux_amd64.zip
     unzip websocketd-0.2.12-linux_amd64.zip -d ~/venvs/connmon/bin/
   SHELL
