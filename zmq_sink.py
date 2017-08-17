@@ -1,4 +1,4 @@
-"""PacketSummary, Prints out packet information"""
+"""Send selected item data to a zmq endpoint"""
 from __future__ import print_function
 
 import zmq
