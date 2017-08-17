@@ -13,7 +13,6 @@ socket.setsockopt(zmq.SUBSCRIBE, b"7")
 socket.setsockopt(zmq.SUBSCRIBE, b"9")
 
 for update_nbr in range(1000):
-    string = socket.recv()
-    topic, messagedata = string.split()
+    [topic, messagedata] = socket.recv_multipart()
     print(topic, messagedata)
     sys.stdout.flush()
