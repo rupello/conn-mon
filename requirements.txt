@@ -1,3 +1,4 @@
 honcho
 zmq
 chains
+pytest
