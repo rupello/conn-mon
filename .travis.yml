@@ -1,0 +1,8 @@
+lannguage: python
+python:
+  - "2.7"
+before_install:
+  - pip install pytest pytest-cov
+  - pip install -r requirments
+script:
+  - py.test
