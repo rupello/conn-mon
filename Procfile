@@ -8,7 +8,8 @@ forwarder: python forwarder_device.py
 websocketsrv: websocketd --port="$CM_PORT_WEBSCKT" python subscriber.py
 
 # publish some input messages to the system
-publisher: PYTHONUNBUFFERED=true python publisher.py
+#publisher: PYTHONUNBUFFERED=true python publisher.py
+publisher: PYTHONUNBUFFERED=true python tsharksource.py
 
 # start the web server
 web: python -m SimpleHTTPServer # python 2
