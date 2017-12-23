@@ -39,8 +39,8 @@ Vagrant.configure("2") do |config|
     mkdir ~/venvs
     virtualenv ~/venvs/connmon
     source ~/venvs/connmon/bin/activate
-    pip install honcho zmq chains
+    pip install -r /vagrant/requirements.txt
     wget -q https://github.com/joewalnes/websocketd/releases/download/v0.2.12/websocketd-0.2.12-linux_amd64.zip
-    unzip websocketd-0.2.12-linux_amd64.zip -d ~/venvs/connmon/bin/
+    unzip -o websocketd-0.2.12-linux_amd64.zip -d ~/venvs/connmon/bin/
   SHELL
 end

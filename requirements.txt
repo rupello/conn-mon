@@ -1,4 +1,4 @@
-honcho
-zmq
 chains
-pytest
+honcho
+pyzmq
+zmq
