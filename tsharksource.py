@@ -2,10 +2,12 @@ import subprocess
 import json
 import zmq
 
+port =  os.environ["CM_PORT_PUBLISHER"]
+
 if __name__ == '__main__':
   context = zmq.Context()
   socket = context.socket(zmq.PUB)
-  socket.connect("tcp://localhost:5559")
+  socket.connect("tcp://localhost:%s" % port)
 
   proc = subprocess.Popen(['tshark', '-T', 'ek', '-Y', 'tcp.flags.syn==1 and tcp.flags.ack==0'],
                              stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=False)
