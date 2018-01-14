@@ -26,7 +26,8 @@
     <script>
         // prepend new items to the list 
         function newitem(x) {
-            $("#mylist").prepend('<div class="alert alert-success" role="alert" style="display: none;">'+x+'</div>');
+            data = JSON.parse(x);
+            $("#mylist").prepend('<div class="alert alert-success" role="alert" style="display: none;">'+data.data.timestamp+'</div>');
             $("#mylist").children(":first-child").show(200);
         };
 

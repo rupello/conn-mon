@@ -1,6 +1,7 @@
 """a generic subscriber that listens on a given port & topics"""
 import sys
 import zmq
+import json
 
 port =  sys.argv[1]
 topics = sys.argv[2].split(",")
@@ -17,6 +18,7 @@ for topic in topics:
   socket.setsockopt(zmq.SUBSCRIBE, topic)
 
 for update_nbr in range(1000):
-    [topic, messagedata] = socket.recv_multipart()
-    print(topic, messagedata)
+    (topic, messagedata) = socket.recv_multipart()
+    message = '{{"topic":"{}", "data":{}}}'.format(topic,messagedata)
+    print message
     sys.stdout.flush()
