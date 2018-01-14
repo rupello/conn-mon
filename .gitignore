@@ -1,2 +1,4 @@
 .vagrant/
 *console.log
+.DS_Store
+.idea/

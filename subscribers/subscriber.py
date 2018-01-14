@@ -1,16 +1,20 @@
+"""a generic subscriber that listens on a given port & topics"""
 import sys
 import zmq
 
-port = "5560"
+port =  sys.argv[1]
+topics = sys.argv[2].split(",")
+
+assert(int(port)>0), "usage subscriber.py "
+assert(len(topics))
+
 # Socket to talk to server
 context = zmq.Context()
 socket = context.socket(zmq.SUB)
 socket.connect ("tcp://localhost:%s" % port)
 
-# subscribe to topics 5, 7 & 9
-socket.setsockopt(zmq.SUBSCRIBE, b"5")
-socket.setsockopt(zmq.SUBSCRIBE, b"7")
-socket.setsockopt(zmq.SUBSCRIBE, b"9")
+for topic in topics:
+  socket.setsockopt(zmq.SUBSCRIBE, topic)
 
 for update_nbr in range(1000):
     [topic, messagedata] = socket.recv_multipart()
